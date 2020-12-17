@@ -22,7 +22,7 @@ The website has three (types of) pages: [the homepage](/src/pages/Home.vue), [th
 
 ## Adding a notebook
 
-Create a new folder in the [`public/file/`](/public/file/) directory, named whatever number notebook this is (_1_, _2_, _96_, etc). In the folder, place all scans of the notebook, titled: `0.png`, `1.png`, etc, up to the number of pages there are. Create new file in the folder titled: `info.json`. The contents should look like this (obviously, replace the `totalPages` value with the number of pages in this notebook—i.e the highest number photo in the folder):
+Create a new folder in the [`public/file/`](/public/file/) directory, named whatever number notebook this is (_1_, _2_, _96_, etc). In the folder, place all scans of the notebook, titled: `0.png`, `1.png`, etc, up to the number of pages there are. Create a new file in the folder titled: `info.json`. The contents should look like this:
 
 ```json
 {
@@ -32,4 +32,4 @@ Create a new folder in the [`public/file/`](/public/file/) directory, named what
 }
 ```
 
-Also replace the started/finished values with the correct information. [See here for an example](/public/file/1/).
+Obviously, replace the `totalPages` value with the number of pages in this notebook—i.e the highest number photo in the folder. Also replace the started/finished values with the correct information. [See here for an example](/public/file/1/).
