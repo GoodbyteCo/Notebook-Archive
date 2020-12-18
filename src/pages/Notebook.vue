@@ -40,7 +40,7 @@
 				v-show="page < totalPages"
 			/>
 		</nav>
-		
+
 	</div>
 </template>
 
@@ -109,6 +109,10 @@
 	import PageNumber from "../components/PageNumber.vue"
 	import PageImage from "../components/PageImage.vue"
 	import PageButton from "../components/PageButton.vue"
+	import Sounsd from "../sound"
+
+	const slideSound = Sounsd.createNew("/assets/paper-slide.mp3", 0.4, 0.1)
+	const clickSound = Sounsd.createNew("/assets/click.mp3", 1, 0.4)
 
 	export default 
 	{
@@ -187,6 +191,8 @@
 		{
 			gotoPage: function(pageNumber, vibrate=true) 
 			{
+				clickSound()
+				
 				try
 				{
 					if(vibrate)
@@ -220,11 +226,13 @@
 					// if we are coming from the front cover, or going 
 					// to the front cover (but not on a 0 -> 0 move)
 					this.notebookImagesClass = 'open-book'
+					slideSound()
 				}
 				else if(this.xor(this.page == this.totalPages, pageNumber == this.totalPages))
 				{
 					// same, but for last page
 					this.notebookImagesClass = 'close-book'
+					slideSound()
 				}
 				else
 				{
@@ -248,7 +256,7 @@
 			xor: function(a, b)
 			{
 				return (a && !b) || (!a && b)
-			}
+			},
 		}
 	}
 </script>
