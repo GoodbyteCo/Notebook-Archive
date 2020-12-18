@@ -36,7 +36,7 @@
 			/>
 			<page-button
 				:dir="'next'"
-				:onclick="() => gotoPage(page + 1)"
+				:onclick="() => gotoPage(parseInt(page) + 1)"
 				v-show="page < totalPages"
 			/>
 		</nav>
