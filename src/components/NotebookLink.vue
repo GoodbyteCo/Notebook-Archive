@@ -71,8 +71,7 @@
 		grid-row: 1;
 
 		pointer-events: none;
-		transition: transform 0.4s cubic-bezier(0, 0.59, 0.07, 1);
-		/* 0.3s cubic-bezier(0.65, 0.15, 0, 1); */
+		transition: transform 0.4s cubic-bezier(0, 0.6, 0, 1);
 	}
 
 	a:hover p, a:focus-visible p
