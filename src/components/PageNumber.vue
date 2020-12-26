@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<label id="page-input-label" for="page-input">page</label>
-		<!-- <span id="leading-zero" v-show="(page < 10)" role="none">0</span> -->
 		<input
 			id="page-input"
 			labeled-by="page-input-label"

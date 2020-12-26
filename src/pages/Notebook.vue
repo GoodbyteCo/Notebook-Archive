@@ -109,10 +109,10 @@
 	import PageNumber from "../components/PageNumber.vue"
 	import PageImage from "../components/PageImage.vue"
 	import PageButton from "../components/PageButton.vue"
-	import Sounsd from "../sound"
+	import Sounds from "../sound"
 
-	const slideSound = Sounsd.createNew("/assets/paper-slide.mp3", 0.4, 0.1)
-	const clickSound = Sounsd.createNew("/assets/click.mp3", 1, 0.4)
+	const slideSound = Sounds.createNew("/assets/paper-slide.mp3", 0.4, 0.1)
+	const clickSound = Sounds.createNew("/assets/click.mp3", 1, 0.4)
 
 	export default 
 	{
