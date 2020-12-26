@@ -1,7 +1,7 @@
 <template>
 	<nav>
 		<site-banner>
-			Notebook Archive
+			Personal Notebook Archive
 		</site-banner>
 		<notebook-link
 			v-for="number in range" 

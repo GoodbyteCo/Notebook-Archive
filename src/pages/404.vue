@@ -8,6 +8,7 @@
 <script>
 	export default 
 	{
+		name: "404-page",
 		created () 
 		{
 			document.title = "404 - Page not found";
