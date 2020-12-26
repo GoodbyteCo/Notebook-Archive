@@ -33,3 +33,5 @@ Create a new folder in the [`public/file/`](/public/file/) directory, named what
 ```
 
 Obviously, replace the `totalPages` value with the number of pages in this notebook—i.e the highest number photo in the folder. Also replace the started/finished values with the correct information. [See here for an example](/public/file/1/).
+
+As well, you must update the [`NUMBER_OF_NOTEBOOKS`](https://github.com/GoodbyteCo/Field-Notes-Archive/blob/main/src/pages/Home.vue#L23) value in the [`src/pages/Home.vue`](/src/pages/Home.vue) file to the correct number of notebooks on the site.
