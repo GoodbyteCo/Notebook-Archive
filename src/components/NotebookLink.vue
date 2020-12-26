@@ -49,6 +49,7 @@
 		grid-column: 1;
 		grid-row: 1;
 
+		pointer-events: none;
 		filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15)) drop-shadow(0 4px 2px rgba(0,0,0,0.3));
 		transition: transform 0.3s cubic-bezier(0.7, 0.15, 0, 1);
 	}
@@ -69,6 +70,7 @@
 		grid-column: 1;
 		grid-row: 1;
 
+		pointer-events: none;
 		transition: transform 0.4s cubic-bezier(0, 0.59, 0.07, 1);
 		/* 0.3s cubic-bezier(0.65, 0.15, 0, 1); */
 	}

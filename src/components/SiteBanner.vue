@@ -46,7 +46,7 @@
 	}
 
 	/* remove global focus style */
-	a:hover, a:focus-visible
+	a:hover, a:focus-visible, a:focus
 	{
 		outline: none;
 		box-shadow: none;

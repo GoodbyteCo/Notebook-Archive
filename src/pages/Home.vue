@@ -7,6 +7,7 @@
 			v-for="number in range" 
 			:key=number
 			:number=number
+			v-on:mouseover.native=playSound
 		/>
 	</nav>
 </template>
@@ -25,8 +26,10 @@
 
 	import NotebookLink from "../components/NotebookLink.vue"
 	import SiteBanner from "../components/SiteBanner.vue"
+	import Sounds from "../sound"
 
 	const NUMBER_OF_NOTEBOOKS = 5 // figure out a better way to do this
+	const slideSound = Sounds.createNew("/assets/paper-slide.mp3", 0.7, 0.05)
 
 	export default 
 	{
@@ -41,6 +44,13 @@
 		{
 			SiteBanner,
 			NotebookLink
+		},
+		methods:
+		{
+			playSound: function()
+			{
+				slideSound()
+			}
 		}
 	}
 </script>

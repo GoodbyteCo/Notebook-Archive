@@ -8,7 +8,7 @@
 	<div v-else class="notebook-layout">
 		
 		<header id="info">
-			<book-number :number=bookNumber />
+			<book-number :number=bookNumber v-on:mousedown.native=playClick />
 			<start-finish :started=started :finished=finished />
 			<page-number :page=page :max=totalPages :onSubmit=gotoPage />
 		</header>
@@ -257,6 +257,11 @@
 			{
 				return (a && !b) || (!a && b)
 			},
+
+			playClick: function()
+			{
+				clickSound()
+			}
 		}
 	}
 </script>
