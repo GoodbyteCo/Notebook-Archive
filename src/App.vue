@@ -6,7 +6,7 @@
 	@font-face
 	{
 		font-family: webfont;
-		src: url('/assets/f.woff2');
+		src: url('/assets/f.woff') format('woff');
 		font-display: swap;
 	}
 

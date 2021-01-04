@@ -62,7 +62,7 @@
 	p
 	{
 		font-size: 4rem;
-		color: #000;
+		color: var(--color);
 		font-style: italic;
 
 		margin-top: 200px;
