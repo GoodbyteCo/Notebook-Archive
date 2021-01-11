@@ -46,7 +46,18 @@
 	}
 
 	/* remove global focus style */
-	a:hover, a:focus-visible, a:focus
+	a:hover, a:focus
+	{
+		outline: none;
+		box-shadow: none;
+		border-radius: 0px;
+		text-decoration: none;
+		display: grid;
+		padding: 0;
+		margin: 0;
+	}
+
+	 a:focus-visible
 	{
 		outline: none;
 		box-shadow: none;

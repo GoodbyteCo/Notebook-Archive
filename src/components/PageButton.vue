@@ -54,13 +54,24 @@
 		float: left;
 	}
 
-	button:hover svg, button:focus-visible svg
+	button:hover svg
 	{
 		opacity: 1;
 		animation: bump-in-right 0.15s ease;
 	}
 
-	button.btn-previous:hover svg, button.btn-previous:focus-visible svg
+	button:focus-visible svg
+	{
+		opacity: 1;
+		animation: bump-in-right 0.15s ease;
+	}
+
+	button.btn-previous:hover svg
+	{
+		animation: bump-in-left 0.15s ease;
+	}
+
+	button.btn-previous:focus-visible svg
 	{
 		animation: bump-in-left 0.15s ease;
 	}

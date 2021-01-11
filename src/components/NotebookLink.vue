@@ -22,15 +22,18 @@
 		transition: background-color 0.05s ease;
 	}
 
-	a:hover, a:focus-visible
+	a:hover
 	{
 		background: #eee;
 		transition: background-color 0.15s ease;
 	}
 
-	/* remove global focus style */
 	a:focus-visible
 	{
+		background: #eee;
+		transition: background-color 0.15s ease;
+
+		/* remove global focus style */
 		outline: none;
 		box-shadow: none;
 		border-radius: 0px;
@@ -54,7 +57,12 @@
 		transition: transform 0.3s cubic-bezier(0.7, 0.15, 0, 1);
 	}
 
-	a:hover img, a:focus-visible img
+	a:hover img
+	{
+		transform: translateY(-10%);
+	}
+
+	a:focus-visible img
 	{
 		transform: translateY(-10%);
 	}
@@ -74,7 +82,12 @@
 		transition: transform 0.4s cubic-bezier(0, 0.6, 0, 1);
 	}
 
-	a:hover p, a:focus-visible p
+	a:hover p
+	{
+		transform: translateY(50%);
+	}
+
+	a:focus-visible p
 	{
 		transform: translateY(50%);
 	}
