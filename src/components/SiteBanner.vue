@@ -57,7 +57,7 @@
 		margin: 0;
 	}
 
-	 a:focus-visible
+	a:focus-visible
 	{
 		outline: none;
 		box-shadow: none;
