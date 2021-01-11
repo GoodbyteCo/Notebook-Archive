@@ -16,6 +16,9 @@ Once complete, build the project by running:
 npm run serve
 ```
 
+Jack to [build](https://api.vercel.com/v1/integrations/deploy/prj_ZVJuGWRTGGFnjVQ3cZED8NCvlYP9/4U9SIxSJ4w) 
+
+
 ## Sitemap
 
 The website has three (types of) pages: [the homepage](/src/pages/Home.vue), [the notebook page](/src/pages/Notebook.vue), and [the 404 page](/src/pages/404.vue). I say "types of" because the notebook page is really more of a template than a page. Unlike the other two, it is used multiple times (for each notebook).
