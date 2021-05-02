@@ -60,7 +60,7 @@
 		animation: bump-in-right 0.15s ease;
 	}
 
-	button:focus-visible svg
+	[v-focus-visible=true] button:focus svg
 	{
 		opacity: 1;
 		animation: bump-in-right 0.15s ease;
@@ -71,7 +71,7 @@
 		animation: bump-in-left 0.15s ease;
 	}
 
-	button.btn-previous:focus-visible svg
+	[v-focus-visible=true] button.btn-previous:focus svg
 	{
 		animation: bump-in-left 0.15s ease;
 	}

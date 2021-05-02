@@ -67,7 +67,7 @@
 		opacity: 1;
 	}
 
-	a:focus-visible
+	[v-focus-visible=true] a:focus
 	{
 		padding: 0;
 		padding-top: 18px;
@@ -78,7 +78,7 @@
 		transform: translateX(10px);
 	}
 
-	a:focus-visible::after
+	[v-focus-visible=true] a:focus::after
 	{
 		content: "";
 		display: block;

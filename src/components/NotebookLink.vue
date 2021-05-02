@@ -28,7 +28,7 @@
 		transition: background-color 0.15s ease;
 	}
 
-	a:focus-visible
+	[v-focus-visible=true] a:focus
 	{
 		background: #eee;
 		transition: background-color 0.15s ease;
@@ -87,7 +87,7 @@
 		transform: translateY(50%);
 	}
 
-	a:focus-visible p
+	[v-focus-visible=true] a:focus p
 	{
 		transform: translateY(50%);
 	}

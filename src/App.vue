@@ -1,5 +1,5 @@
 <template>
-	<router-view id="page" role="main" :key="$route.fullPath" />
+	<router-view id="page" role="main" :key="$route.fullPath" v-focus-visible />
 </template>
 
 <style>
@@ -76,7 +76,7 @@
 		text-decoration: underline;
 	}
 
-	a:focus-visible
+	[v-focus-visible=true] a:focus
 	{
 		outline: none;
 		box-shadow: 0 0 0 2px var(--color);

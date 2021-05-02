@@ -31,7 +31,7 @@
 		color: inherit;
 	}
 
-	a:focus-visible::after
+	[v-focus-visible=true] a:focus::after
 	{
 		content: "";
 		display: block;
@@ -57,7 +57,7 @@
 		margin: 0;
 	}
 
-	a:focus-visible
+	[v-focus-visible=true] a:focus
 	{
 		outline: none;
 		box-shadow: none;
