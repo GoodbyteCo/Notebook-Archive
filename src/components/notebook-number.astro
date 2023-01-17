@@ -1,0 +1,110 @@
+---
+import ScreenReaderOnly from './screen-reader-only.astro'
+
+const { number } = Astro.props
+---
+
+<div class="container">
+	<a href="./">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14" role="presentation">
+			<path class="arrow-stem" d="M14.69 7.7V6.21H2.99V7.7z"/>
+			<path d="m6.85 13 1.04-1.04L3.61 7.7V6.21l4.28-4.28L6.85.91.81 6.95z"/>
+		</svg>
+		<span>
+			See all books
+		</span>
+	</a>
+	<h1>
+		<ScreenReaderOnly>
+			Notebook
+		</ScreenReaderOnly>
+		{number}
+	</h1>
+</div>
+
+<style>
+	div.container
+	{
+		position: relative;
+		text-align: center;
+		min-width: 38px;
+	}
+
+	h1
+	{
+		font-size: 2.8em;
+		font-weight: normal;
+		margin: 0;
+		transform: translateY(-1px);
+		user-select: none;
+		transition: opacity 0.1s ease-out;
+	}
+
+	a:hover + h1,
+	a:focus + h1
+	{
+		opacity: 0.1;
+	}
+
+	a
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 99;
+
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+
+		text-decoration: none;
+		color: inherit;
+		outline: none;
+	}
+
+	a span
+	{
+		display: block;
+		font-size: 0.7rem;
+		max-width: 38px;
+		margin: auto;
+		user-select: none;
+		opacity: 0;
+		transition: opacity 0.1s ease-out;
+	}
+
+	a:hover span,
+	a:focus span
+	{
+		opacity: 1;
+	}
+
+	svg
+	{
+		position: absolute;
+		left: -10px;
+		width: 16px;
+		transition: transform 0.1s ease-out;
+	}
+
+	a:hover svg,
+	a:focus svg
+	{
+		transform: translateX(-10px);
+	}
+
+	.arrow-stem
+	{
+		transform: scaleX(0);
+		transition: transform 0.1s ease-out;
+	}
+
+	a:hover .arrow-stem,
+	a:focus .arrow-stem
+	{
+		transform: scaleX(1);
+	}
+</style>
