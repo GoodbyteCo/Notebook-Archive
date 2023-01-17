@@ -1,0 +1,6 @@
+---
+const { condition } = Astro.props as { condition: boolean }
+---
+{
+	condition && <slot/>
+}
