@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-	base: '/notebooks',
+	base: '/Notebook-Archive',
 	publicDir: './notebooks',
 })
