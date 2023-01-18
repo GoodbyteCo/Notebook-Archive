@@ -1,0 +1,190 @@
+---
+import * as img from '../util/images'
+import ScreenReaderOnly from './screen-reader-only.astro'
+
+const { page, index, isFirst, isLast } = Astro.props
+---
+
+<div class="notebook-page" id={`notebook-page-${index}`}>
+	<picture>
+		<source srcset={img.toAvif(page.default)} type="image/avif">
+		<source srcset={img.toWebP(page.default)} type="image/webp" />
+    	<img src={img.partiallyEncode(page.default)} alt={`Scan of page ${index}.`}>
+	</picture>
+	<div class="options">
+		<button
+			class="pagenumber-button back"
+			data-pagenumber={index - 1}
+			disabled={isFirst}
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 53">
+				<path d="m175.77 53 26.09-26.1L175.76.83l-1.33 1.28 23.88 23.88H.3v1.86h198l-23.87 23.82z"/>
+			</svg>
+			<ScreenReaderOnly>
+				Previous page
+			</ScreenReaderOnly>
+		</button>
+		<a href={img.partiallyEncode(page.default)} target="_blank">
+			<ScreenReaderOnly>
+				Open full-size image in new tab
+			</ScreenReaderOnly>
+		</a>
+		<button
+			class="pagenumber-button"
+			data-pagenumber={index + 1}
+			disabled={isLast}
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 53">
+				<path d="m175.77 53 26.09-26.1L175.76.83l-1.33 1.28 23.88 23.88H.3v1.86h198l-23.87 23.82z"/>
+			</svg>
+			<ScreenReaderOnly>
+				Next page
+			</ScreenReaderOnly>
+		</button>
+	</div>
+</div>
+
+<script>
+	import { goToPage } from '../util/navigation'
+
+	const buttons = document.querySelectorAll('.pagenumber-button') as NodeListOf<HTMLElement>
+	
+	buttons.forEach((button) => {
+		button.addEventListener('click', () => goToPage(button.dataset.pagenumber))
+	})
+</script>
+
+<style>
+	img
+	{
+		display: block;
+		width: 885px;
+		max-width: 100%;
+		max-height: calc(90vh - 140px);
+		aspect-ratio: 7 / 5.5;
+		object-fit: contain;
+		object-position: center;
+		margin: 0 auto;
+
+		user-select: none;
+		filter: drop-shadow(1px 6px 2px hsl(var(--shadow-color) / 0.7));
+	}
+
+	div.notebook-page
+	{
+		position: relative;
+	}
+
+	div.notebook-page:not(:first-of-type)
+	{
+		display: none;
+	}
+
+	.options
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 99;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.options a
+	{	
+		cursor: zoom-in;
+
+		max-width: calc(885px / 2);
+		max-height: calc(90vh - 140px);
+		height: 100%;
+		aspect-ratio: 3.5 / 5.5;
+	}
+
+	.options button.pagenumber-button
+	{
+		color: var(--ink-color);
+
+		height: 100%;
+		width: calc(885px / 2);
+		text-align: center;
+		overflow: hidden;
+
+		border: none;
+		box-shadow: none;
+		padding: 0 10px;
+		margin: 0;
+		background: transparent;
+		cursor: pointer;
+	}
+
+	.options button.pagenumber-button svg
+	{
+		max-width: 202px;
+		fill: currentColor;
+		opacity: 0;
+		transform: translateX(-40px);
+		transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+	}
+
+	.options button.pagenumber-button.back svg
+	{
+		transform: scaleX(-1) translateX(-40px);
+	}
+
+	.options button.pagenumber-button:hover svg,
+	.options button.pagenumber-button:focus svg
+	{
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	.options button.pagenumber-button.back:hover svg,
+	.options button.pagenumber-button.back:focus svg
+	{
+		transform: scaleX(-1) translateX(0);
+	}
+
+	.options button.pagenumber-button:disabled
+	{
+		pointer-events: none;
+	}
+
+	.options button.pagenumber-button:disabled svg
+	{
+		display: none;
+	}
+
+	@media (max-width: 600px)
+	{
+		.options button.pagenumber-button
+		{
+			position: fixed;
+			bottom: 75px;
+			z-index: 99;
+			opacity: 1;
+
+			height: 54px;
+			width: calc(50% - 40px);
+		}
+
+		.options button.pagenumber-button.back
+		{
+			left: 0;
+		}
+
+		.options button.pagenumber-button:not(.back)
+		{
+			right: 0;
+		}
+
+		.options button.pagenumber-button svg
+		{
+			opacity: 1;
+		}
+	}
+</style>

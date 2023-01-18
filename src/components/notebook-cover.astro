@@ -1,0 +1,122 @@
+---
+import * as img from '../util/images'
+
+const { index, folder, gloss } = Astro.props as { index: number, folder: string, gloss?: string }
+const coverImage = folder + '/00.png'
+---
+
+<div class="container">
+	<div class="add-perspective">
+		<picture>
+			<source srcset={img.toAvif(coverImage)} type="image/avif">
+			<source srcset={img.toWebP(coverImage)} type="image/webp" />
+			<img src={img.partiallyEncode(coverImage)} alt={`Cover of notebook #${index}.`}>
+		</picture>
+		<div class="highlight" style={`opacity: ${gloss ?? '10%'}`}/>
+	</div>
+</div>
+
+<script>
+	function reactToMouse(event: MouseEvent, cover: HTMLElement, bounds: DOMRect) {
+		const mouseX = event.clientX
+		const mouseY = event.clientY
+		const leftX = mouseX - bounds.x
+		const topY = mouseY - bounds.y
+		const center = {
+			x: leftX - bounds.width / 2,
+			y: topY - bounds.height / 2,
+		}
+
+		const distance = Math.sqrt(center.x**2 + center.y**2)
+
+		cover.style.transform = `
+			scale3d(1.07, 1.07, 1.07)
+			rotate3d(
+				${center.y / 100},
+				${-center.x / 100},
+				0,
+				${Math.log(distance)* 2}deg
+			)
+		`
+
+		const highlight = cover.querySelector('.highlight') as HTMLElement
+		
+		highlight.style.backgroundImage = `
+			radial-gradient(
+				circle at
+				${center.x * 2 + bounds.width/2}px
+				${center.y * 2 + bounds.height/2}px,
+				white,
+				transparent
+			)
+		`
+	}
+
+	const covers = document.querySelectorAll('.add-perspective') as NodeListOf<HTMLElement>
+	covers.forEach((cover) => {
+		
+		let reactFunction = (event: MouseEvent) => {
+			let bounds = cover.getBoundingClientRect()
+			reactToMouse(event, cover, bounds)
+		}
+
+		cover.addEventListener('mouseenter', () => {
+			document.addEventListener('mousemove', reactFunction)
+		})
+
+		cover.addEventListener('mouseleave', () => {
+			document.removeEventListener('mousemove', reactFunction)
+			cover.style.transform = ''
+		})
+	})
+</script>
+
+<style>
+	div.container
+	{
+		perspective: 500px;
+	}
+
+	div.add-perspective
+	{
+		padding: 10px 10px 7px 10px;
+
+		filter: drop-shadow(3px 5px 2px hsl(var(--shadow-color) / 0.7));
+		transform: rotate3d(0);
+		transition: filter 0.15s ease-out, transform 0.15s ease-out;
+	}
+
+	:global(a:focus) div.add-perspective,
+	:global(a:hover) div.add-perspective
+	{
+		filter: drop-shadow(6px 10px 4px hsl(var(--shadow-color) / 0.7));
+		transform: scale3d(1.07, 1.07, 1.07);
+	}
+
+	div.highlight
+	{
+		position: absolute;
+		width: calc(100% - 20px);
+		height: calc(100% - 20px);
+		left: 10px;
+		top: 10px;
+		border-radius: 2px 14px 14px 2px;
+
+		background-image: radial-gradient(circle at 50% -20%, white, transparent);
+		transition: opacity 0.15s ease-out;
+		mix-blend-mode: plus-lighter;
+		filter: blur(5px);
+	}
+
+	:global(a:not(:focus):not(:hover)) div.highlight
+	{
+		opacity: 0% !important;
+	}
+
+	img
+	{
+		max-width: 100%;
+		aspect-ratio: 3.5 / 5.5;
+		object-fit: contain;
+	}
+</style>

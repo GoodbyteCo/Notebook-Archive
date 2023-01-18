@@ -1,0 +1,93 @@
+---
+import Arrow from '../components/arrow.astro'
+import Base from '../components/base.astro'
+import NotebookNumber from '../components/notebook-number.astro'
+import NotebookPage from '../components/notebook-page.astro'
+import PageCount from '../components/page-count.astro'
+import { formatFullDate } from '../util/dates'
+import { getInfo, NotebookInfo } from '../util/notebooks'
+
+export async function getStaticPaths() {
+	const notebooks = await Astro.glob('/notebooks/*/00.png')
+	return notebooks.map((notebook, index) => {
+		return {
+			params: { notebook: index+1 },
+			props: {
+				index: index+1,
+				notebook: getInfo(notebook.default),
+			}
+		}
+	})
+}
+
+const { index, notebook } = Astro.props as { index: number, notebook: NotebookInfo}
+
+const allPages = await Astro.glob('/notebooks/*/*.png')
+const pages = allPages.filter(page => page.default.includes(notebook.folderName))
+const totalPages = pages.length
+---
+
+<Base>
+	<div class="container">
+		<header>
+			<NotebookNumber number={index}/>
+			<p>
+				{notebook.started.location}<br>
+				{formatFullDate(notebook.started.date)}
+			</p>
+			<Arrow/>
+			<p>
+				{notebook.completed.location}<br>
+				{formatFullDate(notebook.completed.date)}
+			</p>
+			<PageCount min={0} max={totalPages-1}/>
+		</header>
+		<main>
+			{
+				pages.map((page, i) => {
+					return <NotebookPage
+						page={page}
+						index={i}
+						isFirst={i == 0}
+						isLast={i == totalPages-1}
+					/>
+				})
+			}
+		</main>
+	</div>
+</Base>
+
+<style>
+	.container
+	{
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		justify-content: center;
+		min-height: calc(90vh);
+	}
+
+	header
+	{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 30px;
+		line-height: 1.33;
+
+		margin: 0 auto;
+		width: 885px;
+		max-width: 100%;
+		box-sizing: border-box;
+		padding: 0 30px;
+	}
+
+	@media (max-width: 690px)
+	{
+		header
+		{
+			font-size: 0.9rem;
+			gap: 20px;
+		}
+	}
+</style>

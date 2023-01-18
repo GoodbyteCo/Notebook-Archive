@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="icon" href="/Notebook-Archive/favicon.svg" type="image/svg+xml">
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ECECEC">
+		<meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#222">
+		<meta name="robots" content="noindex">
+		<title>Notebook Archive</title>
+		<style is:global>
+			:root
+			{
+				--font: 'Futura', -apple-system, sans-serif;
+				--ink-color: 172deg 0% 5%;  /* hsl */
+				--paper-color: 49deg 0% 100%; /* hsl */
+				--shadow-color: 172deg 0% 4%; /* hsl */
+			}
+
+			*
+			{
+				font-weight: bold !important;
+			}
+
+			html, body
+			{
+				margin: 0;
+				font-family: var(--font);
+				font-size: 15px;
+				color: hsl(var(--ink-color) / 1);
+				background-color: hsl(var(--paper-color) / 1);
+
+				text-rendering: optimizeLegibility; 
+				-webkit-font-smoothing: antialiased;    
+				-moz-osx-font-smoothing: grayscale;
+				font-feature-settings:"kern" 1;
+				font-kerning: normal;
+			}
+
+			::selection
+			{
+				background-color: hsl(var(--ink-color) / 0.2);
+			}
+		</style>
+	</head>
+	<body>
+		<slot/>
+	</body>
+</html>
