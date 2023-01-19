@@ -19,7 +19,7 @@ const notebooks = getAllNotebooks()
 	{
 		notebooks.reverse().map(notebook =>
 			<li>
-				<a href={`./${notebook.index}`}>
+				<a href={`./${notebook.index}/`}>
 					<NotebookCover
 						index={notebook.index}
 						folder={notebook.folderName}
