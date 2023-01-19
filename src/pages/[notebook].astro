@@ -5,7 +5,7 @@ import NotebookNumber from '../components/notebook-number.astro'
 import NotebookPage from '../components/notebook-page.astro'
 import PageCount from '../components/page-count.astro'
 import { formatFullDate } from '../util/dates'
-import { NotebookInfo, getAllNotebooks } from '../util/notebooks'
+import { NotebookInfo, getAllNotebooks, getAllPages } from '../util/notebooks'
 
 export async function getStaticPaths() {
 	const notebooks = getAllNotebooks()
@@ -19,8 +19,7 @@ export async function getStaticPaths() {
 
 const { notebook } = Astro.props as { notebook: NotebookInfo}
 
-const allPages = await Astro.glob('/notebooks/*/*.png')
-const pages = allPages.filter(page => page.default.includes(notebook.folderName))
+const pages = getAllPages(notebook)
 const totalPages = pages.length
 ---
 

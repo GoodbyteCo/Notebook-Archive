@@ -7,9 +7,9 @@ const { page, index, isFirst, isLast } = Astro.props
 
 <div class="notebook-page" id={`notebook-page-${index}`}>
 	<picture>
-		<source srcset={img.toAvif(page.default)} type="image/avif">
-		<source srcset={img.toWebP(page.default)} type="image/webp" />
-    	<img src={img.partiallyEncode(page.default)} alt={`Scan of page ${index}.`}>
+		<source srcset={img.toAvif(page)} type="image/avif">
+		<source srcset={img.toWebP(page)} type="image/webp" />
+    	<img src={img.partiallyEncode(page)} alt={`Scan of page ${index}.`}>
 	</picture>
 	<div class="options">
 		<button
@@ -24,7 +24,7 @@ const { page, index, isFirst, isLast } = Astro.props
 				Previous page
 			</ScreenReaderOnly>
 		</button>
-		<a href={img.partiallyEncode(page.default)} target="_blank">
+		<a href={img.partiallyEncode(page).replaceAll('/notebooks/', '/Notebook-Archive/')} target="_blank">
 			<ScreenReaderOnly>
 				Open full-size image in new tab
 			</ScreenReaderOnly>

@@ -70,3 +70,11 @@ export function getAllNotebooks(): NotebookInfo[] {
 	const notebooks = paths.sort().map((path, index) => getInfo(path, index+1))
 	return notebooks
 }
+
+export function getAllPages(notebook: NotebookInfo): string[] {
+	const allPages = import.meta.glob('/notebooks/*/*.png')
+	const paths = Object.keys(allPages)
+
+	const pages = paths.filter(path => path.includes(notebook.folderName)).sort()
+	return pages
+}
