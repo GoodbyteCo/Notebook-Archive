@@ -5,11 +5,11 @@ import NotebookNumber from '../components/notebook-number.astro'
 import NotebookPage from '../components/notebook-page.astro'
 import PageCount from '../components/page-count.astro'
 import { formatFullDate } from '../util/dates'
-import { getInfo, onlyNotebookFolders, NotebookInfo } from '../util/notebooks'
+import { getInfo, NotebookInfo } from '../util/notebooks'
 
 export async function getStaticPaths() {
 	const notebooks = await Astro.glob('/notebooks/*/00.png')
-	return notebooks.filter(onlyNotebookFolders).map((notebook, index) => {
+	return notebooks.map((notebook, index) => {
 		return {
 			params: { notebook: index+1 },
 			props: {

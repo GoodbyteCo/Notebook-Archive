@@ -5,7 +5,7 @@ import Logo from '../components/logo.astro'
 import NotebookCover from '../components/notebook-cover.astro'
 import SortButton from '../components/sort-button.astro'
 import { formatShortDate } from '../util/dates'
-import { getInfo, onlyNotebookFolders } from '../util/notebooks'
+import { getInfo } from '../util/notebooks'
 
 const notebooks = await Astro.glob('/notebooks/*/00.png')
 let index = notebooks.length
@@ -18,7 +18,7 @@ let index = notebooks.length
 	</header>
 	<ol id="all-notebooks" reversed>
 	{
-		notebooks.reverse().filter(onlyNotebookFolders).map(notebook => {
+		notebooks.reverse().map(notebook => {
 			const info = getInfo(notebook.default)
 			const currentIndex = index
 			index--

@@ -17,7 +17,7 @@ export function getInfo(filename: string): NotebookInfo {
 	const folderName = pathParts.filter(part => part.includes('-->'))[0]
 
 	if (folderName == null) {
-		throw new Error('No notebook folder present, or folder name not in correct format: ' + filename)
+		throw new Error('No notebook folder present, or folder name not in correct format.')
 	}
 
 	const startedAndCompleted = folderName.split('-->')
@@ -60,15 +60,4 @@ function getPlace(locationString: string | undefined): string {
 	}
 
 	return locationString.trim()
-}
-
-/**
- * Due to what appears to be a bug in the Astro framework, the wildcard glob imports
- * (that work during `dev` builds) import more than just notebooks during static build.
- * This function simply filters out anything that doesn't have the distinctive "-->" of
- * the notebook folder.
- */
-export function onlyNotebookFolders(notebook: Record<string, any>): boolean {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-	return notebook.default.includes('-->')
 }
