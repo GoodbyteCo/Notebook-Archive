@@ -5,10 +5,9 @@ import Logo from '../components/logo.astro'
 import NotebookCover from '../components/notebook-cover.astro'
 import SortButton from '../components/sort-button.astro'
 import { formatShortDate } from '../util/dates'
-import { getInfo } from '../util/notebooks'
+import { getAllNotebooks } from '../util/notebooks'
 
-const notebooks = await Astro.glob('/notebooks/*/00.png')
-let index = notebooks.length
+const notebooks = getAllNotebooks()
 ---
 
 <Base>
@@ -18,32 +17,26 @@ let index = notebooks.length
 	</header>
 	<ol id="all-notebooks" reversed>
 	{
-		notebooks.reverse().map(notebook => {
-			const info = getInfo(notebook.default)
-			const currentIndex = index
-			index--
-
-			return (
-				<li>
-					<a href={`./${currentIndex}`}>
-						<NotebookCover
-							index={currentIndex}
-							folder={info.folderName}
-							gloss={info.gloss}
-						/>
-						<p class="date-range">
-							<span>
-								{formatShortDate(info.started.date)}
-							</span>
-							<Arrow/>
-							<span>
-								{formatShortDate(info.completed.date)}
-							</span>
-						</p>
-					</a>
-				</li>
-			)
-		})
+		notebooks.reverse().map(notebook =>
+			<li>
+				<a href={`./${notebook.index}`}>
+					<NotebookCover
+						index={notebook.index}
+						folder={notebook.folderName}
+						gloss={notebook.gloss}
+					/>
+					<p class="date-range">
+						<span>
+							{formatShortDate(notebook.started.date)}
+						</span>
+						<Arrow/>
+						<span>
+							{formatShortDate(notebook.completed.date)}
+						</span>
+					</p>
+				</a>
+			</li>
+		)
 	}
 	</ol>
 </Base>

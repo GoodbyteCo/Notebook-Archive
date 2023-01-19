@@ -5,13 +5,14 @@ export interface TimeAndPlace {
 }
 
 export interface NotebookInfo {
+	index: number
 	started: TimeAndPlace
 	completed: TimeAndPlace
 	folderName: string
 	gloss: string | undefined
 }
 
-export function getInfo(filename: string): NotebookInfo {
+export function getInfo(filename: string, index: number): NotebookInfo {
 
 	const pathParts = filename.split('/')
 	const folderName = pathParts.filter(part => part.includes('-->'))[0]
@@ -23,6 +24,7 @@ export function getInfo(filename: string): NotebookInfo {
 	const startedAndCompleted = folderName.split('-->')
 
 	return {
+		index: index,
 		started: getTimeAndPlace(startedAndCompleted[0]),
 		completed: getTimeAndPlace(startedAndCompleted[1]),
 		folderName: folderName,
@@ -60,4 +62,11 @@ function getPlace(locationString: string | undefined): string {
 	}
 
 	return locationString.trim()
+}
+
+export function getAllNotebooks(): NotebookInfo[] {
+	const importedCoverImages = import.meta.glob('/notebooks/*/00.png')
+	const paths = Object.keys(importedCoverImages)
+	const notebooks = paths.sort().map((path, index) => getInfo(path, index+1))
+	return notebooks
 }

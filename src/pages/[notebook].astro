@@ -5,22 +5,19 @@ import NotebookNumber from '../components/notebook-number.astro'
 import NotebookPage from '../components/notebook-page.astro'
 import PageCount from '../components/page-count.astro'
 import { formatFullDate } from '../util/dates'
-import { getInfo, NotebookInfo } from '../util/notebooks'
+import { NotebookInfo, getAllNotebooks } from '../util/notebooks'
 
 export async function getStaticPaths() {
-	const notebooks = await Astro.glob('/notebooks/*/00.png')
-	return notebooks.map((notebook, index) => {
+	const notebooks = getAllNotebooks()
+	return notebooks.map(notebook => {
 		return {
-			params: { notebook: index+1 },
-			props: {
-				index: index+1,
-				notebook: getInfo(notebook.default),
-			}
+			params: { notebook: notebook.index },
+			props: { notebook: notebook },
 		}
 	})
 }
 
-const { index, notebook } = Astro.props as { index: number, notebook: NotebookInfo}
+const { notebook } = Astro.props as { notebook: NotebookInfo}
 
 const allPages = await Astro.glob('/notebooks/*/*.png')
 const pages = allPages.filter(page => page.default.includes(notebook.folderName))
@@ -30,7 +27,7 @@ const totalPages = pages.length
 <Base>
 	<div class="container">
 		<header>
-			<NotebookNumber number={index}/>
+			<NotebookNumber number={notebook.index}/>
 			<p>
 				{notebook.started.location}<br>
 				{formatFullDate(notebook.started.date)}
