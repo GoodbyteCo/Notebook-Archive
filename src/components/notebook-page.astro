@@ -24,7 +24,7 @@ const { page, index, isFirst, isLast } = Astro.props
 				Previous page
 			</ScreenReaderOnly>
 		</button>
-		<a href={img.partiallyEncode(page).replaceAll('/notebooks/', '/Notebook-Archive/')} target="_blank">
+		<a href={img.partiallyEncode(page)} target="_blank">
 			<ScreenReaderOnly>
 				Open full-size image in new tab
 			</ScreenReaderOnly>
