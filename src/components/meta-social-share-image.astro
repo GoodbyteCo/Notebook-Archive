@@ -1,0 +1,27 @@
+---
+import { writeToPng } from '../util/og-images'
+
+const { index } = Astro.props
+const svg = await Astro.slots.render('default')
+
+const assetFolder = 'social-images'
+const filename = `notebook-${index}.png`
+
+await writeToPng(assetFolder, filename, svg, {
+	fitTo: {
+		mode: 'width',
+		value: 1200,
+	},
+	font: {
+		loadSystemFonts: true,
+		defaultFontFamily: 'Futura',
+	},
+})
+---
+
+<meta property="og:title" content={`Notebook #${index}`}/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content={`${import.meta.env.BASE_URL}${assetFolder}/${filename}`}/>
+<meta property="og:image:alt" content={`The cover of notebook number ${index}.`}/>
+<meta property="og:url" content={`${import.meta.env.BASE_URL}${index}/`}/>
+<meta property="og:site_name" content="Personal Notebook Archive"/>

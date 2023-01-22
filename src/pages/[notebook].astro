@@ -1,9 +1,11 @@
 ---
 import Arrow from '../components/arrow.astro'
 import Base from '../components/base.astro'
+import MetaSocialShareImage from '../components/meta-social-share-image.astro'
 import NotebookNumber from '../components/notebook-number.astro'
 import NotebookPage from '../components/notebook-page.astro'
 import PageCount from '../components/page-count.astro'
+import ShareImageSvg from '../components/share-image-svg.astro'
 import { formatFullDate } from '../util/dates'
 import { NotebookInfo, getAllNotebooks, getAllPages } from '../util/notebooks'
 
@@ -24,6 +26,12 @@ const totalPages = pages.length
 ---
 
 <Base>
+	
+	<title slot="head">Notebook #{notebook.index}</title>
+	<MetaSocialShareImage index={notebook.index} slot="head">
+		<ShareImageSvg notebook={notebook}/>
+	</MetaSocialShareImage>
+
 	<div class="container">
 		<header>
 			<NotebookNumber number={notebook.index}/>
