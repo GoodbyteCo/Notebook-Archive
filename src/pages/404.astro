@@ -1,0 +1,152 @@
+---
+import Base from '../components/base.astro'
+import Logo from '../components/logo.astro'
+---
+
+<Base>
+	<title slot="head">Page Not Found</title>
+	<header>
+		<Logo/>
+	</header>
+	<main>
+		<picture role="presentation">
+			<source srcset={`${import.meta.env.BASE_URL}assets/torn-page.avif`} type="image/avif">
+			<source srcset={`${import.meta.env.BASE_URL}assets/torn-page.webp`} type="image/webp" />
+			<img src={`${import.meta.env.BASE_URL}assets/torn-page.png`} alt="Notebook with a page torn out.">
+		</picture>
+		<h1>That page does not exist</h1>
+		<p>
+			Sorry, but the page you are trying to visit has moved or never existed
+			to begin with. Check that the URL is correct. If you were following a
+			link, please reach out to have it fixed.
+		</p>
+		<a href={import.meta.env.BASE_URL}>View all notebooks</a>
+	</main>
+</Base>
+
+<style>
+	main
+	{
+		text-align: center;
+		font-size: 0.9rem;
+		line-height: 1.7;
+	}
+
+	header, main
+	{
+		padding: 20px 150px;
+		margin: 0 auto 100px;
+
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 220px);
+		justify-content: center;
+  		align-content: center;
+		gap: 40px 80px;
+	}
+
+	header
+	{
+		margin-top: 60px;
+		margin-bottom: 0px;
+	}
+
+	picture
+	{
+		grid-column: 1 / -1;
+	}
+
+	img
+	{
+		display: block;
+		width: 500px;
+		max-width: 100%;
+		margin: 0 auto;
+
+		mask-image: linear-gradient(to bottom, black, transparent);
+		transform: translateY(50px);
+	}
+
+	h1
+	{
+		grid-column: 1 / -1;
+		max-width: 400px;
+		margin: 0 auto;
+
+		font-size: 2.8rem;
+		line-height: 1.1;
+		text-transform: uppercase;
+		text-shadow: -10px -5px 20px hsl(var(--paper-color) / 1),
+			10px -5px 20px hsl(var(--paper-color) / 1);
+	}
+
+	p
+	{
+		grid-column: 1 / -1;
+		max-width: 65ch;
+		margin: 0 auto;
+	}
+
+	a
+	{
+		grid-column: 1 / -1;
+		color: inherit;
+		outline: none;
+		text-decoration: none;
+		text-transform: uppercase;
+
+		max-width: 19ch;
+		max-width: max-content;
+		margin: auto;
+
+		background-image: linear-gradient(currentColor, currentColor);
+		background-size: 100% 1px;
+		background-position: left bottom;
+		background-repeat: no-repeat;
+
+		opacity: 0.4;
+		transition: opacity 0.15s ease-out;
+	}
+
+	a:hover,
+	a:focus
+	{
+		opacity: 1;
+	}
+
+	@media (max-width: 1400px)
+	{
+		header, main
+		{
+			padding: 20px 50px;
+		}
+	}
+
+	@media (max-width: 1000px)
+	{
+		header, main
+		{
+			padding: 20px 20px;
+			grid-template-columns: repeat(auto-fill, 200px);
+			gap: 40px 50px;
+		}
+
+		img
+		{
+			transform: translateY(10px);
+		}
+	}
+
+	@media (max-width: 500px)
+	{
+		main, header
+		{
+			display: block;
+			margin-top: 20px;
+		}
+
+		main > *
+		{
+			margin-bottom: 40px;
+		}
+	}
+</style>
