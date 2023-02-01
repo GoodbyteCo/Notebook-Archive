@@ -13,8 +13,9 @@ await writeToPng(assetFolder, filename, svg, {
 		value: 1200,
 	},
 	font: {
-		loadSystemFonts: true,
-		defaultFontFamily: 'Futura',
+		fontFiles: ['./notebooks/assets/WorkSans-Bold.ttf'],
+		loadSystemFonts: false,
+		defaultFontFamily: 'Work Sans',
 	},
 })
 ---
