@@ -12,10 +12,19 @@
 		<style is:global>
 			:root
 			{
-				--font: 'Futura', -apple-system, sans-serif;
+				--font: 'Futura', 'Work Sans', -apple-system, sans-serif;
 				--ink-color: 172deg 0% 5%;  /* hsl */
 				--paper-color: 49deg 0% 100%; /* hsl */
 				--shadow-color: 172deg 0% 4%; /* hsl */
+			}
+
+			/* fallback font */
+			@font-face
+			{
+				font-family: 'Work Sans';
+				src: url('notebooks/assets/WorkSans-Bold.ttf') format('ttf');
+				font-weight: bold;
+				font-display: swap;
 			}
 
 			*
