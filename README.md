@@ -9,16 +9,18 @@ A personal museum of one's past notebooks.
 [[Deploying the site](#deploying-the-site)]
 
 <br>
-<img
-	src="./notebooks/assets/homepage-screenshot.png"
-	alt="Screen shot of the homepage. 4 notebooks are shown in a grid layout, with the dates they were started and completed listed below."
-	width="49%"
->
-<img
-	src="./notebooks/assets/notebook-screenshot.png"
-	alt="Screen shot of a notebook page. The cover of the notebook is positioned in the center of the page, with information about the notebook listed above."
-	width="49%"
->
+<p align="middle">
+	<img
+		src="./notebooks/assets/homepage-screenshot.png"
+		alt="Screen shot of the homepage. 4 notebooks are shown in a grid layout, with the dates they were started and completed listed below."
+		width="49%"
+	>
+	<img
+		src="./notebooks/assets/notebook-screenshot.png"
+		alt="Screen shot of a notebook page. The cover of the notebook is positioned in the center of the page, with information about the notebook listed above."
+		width="49%"
+	>
+</p>
 <br>
 
 This is a template project for creating a website to view your old notebooks.
@@ -91,7 +93,7 @@ tool, such as [ImageMagick](https://imagemagick.org/).
 
 ```bash
 ## convert all the png files in the current directory to webp and avif using ImageMagick:
-convert *.png -set filename:basename "%[basename]"  -write "%[filename:basename].webp" "%[filename:basename].avif"
+mogrify -format webp *.png && mogrify -format avif *.png
 ```
 
 Once you notebook is all set up, run the site locally to make sure everything is in
