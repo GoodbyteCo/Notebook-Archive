@@ -5,13 +5,14 @@ const { min, max } = Astro.props
 <label>
 	Page
 	<input
-		type="text"
 		id="page-count-input"
+		type="text"
+		inputmode="numeric"
+		pattern="[0-9]*"
 		maxlength="2"
 		size="3"
 		placeholder="0"
 		value="0"
-		pattern="[0-9]*"
 		data-minimum={min}
 		data-maximum={max}
 	/>
@@ -102,7 +103,12 @@ const { min, max } = Astro.props
 
 			position: fixed;
 			bottom: 80px;
-			left: calc(50% - 26.5px); /* 50% of page, minus 50% of input's width = centered */
+			left: calc(50% - 30.5px); /* 50% of page, minus 50% of input's width = centered */
+
+			z-index: 999;
+			background-color: hsl(var(--paper-color) / 1);
+			border-radius: 10px;
+			padding: 6px 2px 2px;
 		}
 	}
 </style>
