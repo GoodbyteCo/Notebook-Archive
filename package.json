@@ -11,6 +11,7 @@
 		"astro": "^2.0.0-beta.2",
 		"autoprefixer": "^10.4.13",
 		"eslint-config-goodbyte-styleguide-typescript": "^0.0.4",
-		"@resvg/resvg-js": "^2.2.0"
+		"@resvg/resvg-js": "^2.2.0",
+		"@astrojs/image": "^0.14.0"
 	}
 }

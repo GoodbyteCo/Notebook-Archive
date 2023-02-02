@@ -1,6 +1,7 @@
 ---
 import * as img from '../util/images'
 import ScreenReaderOnly from './screen-reader-only.astro'
+import { Image } from '@astrojs/image/components'
 
 const { page, index, isFirst, isLast } = Astro.props
 ---
@@ -11,6 +12,11 @@ const { page, index, isFirst, isLast } = Astro.props
 		<source srcset={img.toWebP(page)} type="image/webp" />
     	<img src={img.partiallyEncode(page)} alt={`Scan of page ${index}.`}>
 	</picture>
+
+	<Image src={page} width={1760} format="avif" alt="descriptive text"/>
+	<Image src={page} width={1760} format="webp" alt="descriptive text"/>
+	<Image src={page} width={1760} format="png" alt="descriptive text"/>
+
 	<div class="options">
 		<button
 			class="pagenumber-button back"
